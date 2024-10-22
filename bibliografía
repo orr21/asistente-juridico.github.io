@@ -1,0 +1,29 @@
+# How to train a LLM model locally
+https://www.youtube.com/watch?v=XwL_cRuXM2E
+
+# How to tune a LLM for a specific use case
+https://www.youtube.com/watch?v=Q9zv369Ggfk
+
+# Run your own AI
+https://www.youtube.com/watch?v=WxYC9-hBM_g
+
+# Run Local model using Open AI
+https://medium.com/data-professor/beginners-guide-to-openai-api-a0420bc58ee5
+
+# Run ollama using Open AI
+https://ollama.com/blog/openai-compatibility
+
+# Reddit tab autocomplete
+https://www.reddit.com/r/ollama/comments/1d17jur/best_setup_for_local_code_tab_completion_and_chat/
+
+# continue.dev
+https://docs.continue.dev/customize/deep-dives/autocomplete
+
+# Vector databases
+https://medium.com/the-ai-forum/which-vector-database-should-you-use-choosing-the-best-one-for-your-needs-5108ec7ba133
+
+# Text autocompletion
+https://github.com/amitpuri/LLM-Text-Completion
+
+# Finetuning
+https://github.com/molbal/llm-text-completion-finetune

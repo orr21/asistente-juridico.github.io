@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente de Autorellenado de Antecedentes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        #container {
+            display: flex;
+            justify-content: space-between;
+        }
+        #documentText {
+            width: 60%;
+            height: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        #previewPanel {
+            width: 35%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        #suggestionsPanel {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #e9e9e9;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        button {
+            margin-right: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        li {
+            cursor: pointer;
+        }
+        li:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h2>Asistente de Autorellenado de Antecedentes</h2>
+
+    <div id="container">
+        <!-- Área de texto principal -->
+        <textarea id="documentText" placeholder="Escribe el contenido del documento..."></textarea>
+
+        <!-- Vista previa -->
+        <div id="previewPanel">
+            <h3>Vista Previa del Documento</h3>
+            <p id="documentPreview"></p>
+        </div>
+    </div>
+
+    <!-- Panel de sugerencias -->
+    <div id="suggestionsPanel">
+        <h4>Sugerencias</h4>
+        <ul id="suggestionsList"></ul>
+    </div>
+
+    <!-- Botones de acción -->
+    <button id="clearButton">Borrar</button>
+    <button id="downloadButton">Descargar Documento</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
