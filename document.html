@@ -4,23 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Documento</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="document.css">
 </head>
 <body class="document-body">
-  <div class="document-content">
-    <h1>Documento de Ejemplo</h1>
-    <p id="styledText" contenteditable="true"></p> <!-- Este párrafo es siempre editable -->
+  <div class="document-container">
+    <div class="document-content" contenteditable="true">
+      <h2>DEMANDA DE JUICIO ORDINARIO</h2>
+      <p>AL JUZGADO DE PRIMERA INSTANCIA DE <strong>[Ciudad]</strong> QUE POR TURNO CORRESPONDA</p>
+      <p>D. <strong>[Nombre del Demandante]</strong>, mayor de edad, con DNI <strong>[Número]</strong>, y con domicilio en <strong>[Dirección completa]</strong>, actuando en su propio nombre y derecho, comparezco ante este Juzgado y como mejor proceda en derecho, digo:</p>
+      <h3>I. HECHOS</h3>
+      <ul>
+        <li>Que el día <strong>[fecha]</strong>, el demandante y el demandado, D. <strong>[Nombre del Demandado]</strong>, con domicilio en <strong>[Dirección completa]</strong>, suscribieron un contrato de préstamo por un importe de <strong>[Cantidad en euros]</strong>, en el que se establecía que el demandado devolvería el importe en <strong>[plazo pactado]</strong>.</li>
+        <li>Que, en virtud de dicho contrato, el demandante entregó la cantidad de <strong>[Cantidad en euros]</strong> al demandado, en concepto de préstamo, el día <strong>[fecha]</strong>.</li>
+        <li>Que, a pesar de haber transcurrido el plazo acordado en el contrato, el demandado no ha cumplido con su obligación de devolver la cantidad prestada, adeudando a fecha de presentación de esta demanda la cantidad de <strong>[Cantidad en euros]</strong>.</li>
+        <li>Que, a pesar de los múltiples requerimientos extrajudiciales efectuados por el demandante, el demandado no ha procedido a devolver la cantidad adeudada, manteniéndose en una situación de incumplimiento contractual.</li>
+      </ul>
+      <h3>II. FUNDAMENTOS DE DERECHO</h3>
+      <ul>
+        <li><strong>Competencia:</strong> Conforme a lo dispuesto en el artículo 50 de la Ley de Enjuiciamiento Civil, es competente este Juzgado de Primera Instancia para conocer de esta demanda por razón del domicilio del demandado.</li>
+        <li><strong>Legitimación:</strong> El demandante ostenta plena legitimación activa para interponer la presente demanda, por ser parte del contrato de préstamo cuya ejecución se reclama. El demandado ostenta la legitimación pasiva, por ser la parte incumplidora.</li>
+        <li><strong>Fondo del Asunto:</strong> En virtud de lo dispuesto en los artículos 1088, 1101, 1254 y siguientes del Código Civil, el demandado ha incumplido su obligación de devolver la cantidad recibida en préstamo, lo que conlleva su obligación de indemnizar al demandante con la cantidad adeudada.</li>
+        <li><strong>Intereses:</strong> Conforme al artículo 1108 del Código Civil, el demandado está obligado a pagar los intereses legales devengados desde el momento en que se incumplió la obligación de pago.</li>
+      </ul>
+    </div>
   </div>
 
   <!-- Menú flotante para estilos y edición de texto -->
-  <div id="styleMenu">
-    <button id="boldButton" onclick="applyStyle('bold')">B</button>
-    <button id="italicButton" onclick="applyStyle('italic')">I</button>
-    <button id="underlineButton" onclick="applyStyle('underline')">U</button>
-    <textarea id="editText" placeholder="Escriba o edite el texto aquí..."></textarea>
-    <button onclick="replaceText()">Reemplazar Texto</button>
+  <div id="styleMenu" style="display: none;">
+    <button onclick="applyStyle('bold')">B</button>
+    <button onclick="applyStyle('italic')">I</button>
+    <button onclick="toggleAskAssistant()">Preguntar al Asistente</button>
+
+    <!-- Elementos adicionales para la opción de preguntar -->
+    <div id="askAssistant" style="display: none;">
+      <textarea id="assistantQuestion" placeholder="Escribe tu pregunta..."></textarea>
+      <button onclick="submitQuestion()">Confirmar</button>
+    </div>
+  </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="document.js"></script>
 </body>
 </html>

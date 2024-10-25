@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interfaz Futurista de Justicia</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Interfaz Judicial Minimalista</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <div class="container">
-    <form id="searchForm">
+    <h1 class="title">Tu asistente judicial</h1>
+    <form id="searchForm" class="search-form">
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Buscar..." class="search-input" required>
+        <input type="text" id="searchInput" placeholder="Describe tu documento...." class="search-input" required>
         <button type="submit" class="search-button">✍️</button>
       </div>
     </form>
@@ -20,7 +21,7 @@
     document.getElementById("searchForm").addEventListener("submit", function(event) {
       event.preventDefault();
       const searchText = document.getElementById("searchInput").value;
-      const newWindow = window.open(`document.html?text=${encodeURIComponent(searchText)}`, "_blank");
+      const newWindow = window.open(`document.html`, "_blank");
     });
   </script>
 </body>
