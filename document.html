@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documento</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="document-body">
+  <div class="document-content">
+    <h1>Documento de Ejemplo</h1>
+    <p id="styledText" contenteditable="true"></p> <!-- Este párrafo es siempre editable -->
+  </div>
+
+  <!-- Menú flotante para estilos y edición de texto -->
+  <div id="styleMenu">
+    <button id="boldButton" onclick="applyStyle('bold')">B</button>
+    <button id="italicButton" onclick="applyStyle('italic')">I</button>
+    <button id="underlineButton" onclick="applyStyle('underline')">U</button>
+    <textarea id="editText" placeholder="Escriba o edite el texto aquí..."></textarea>
+    <button onclick="replaceText()">Reemplazar Texto</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

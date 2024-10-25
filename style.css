@@ -1,0 +1,136 @@
+/* Estilo principal */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #004aad, #ffc107);
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    padding: 20px 60px;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+  }
+  
+  .search-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 18px;
+    width: 300px;
+  }
+  
+  .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .search-button {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 32px; /* Aumenta el tamaño del icono */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .search-button:hover {
+    transform: scale(1.1); /* Efecto de aumento al pasar el mouse */
+  }
+  
+  
+  .document-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #004aad, #ffc107);
+    font-family: 'Georgia', serif;
+  }
+  
+  .document-content {
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #004aad;
+  }
+  
+  #styledText {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  #styleMenu {
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    width: 200px;
+  }
+  
+  #styleMenu button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  #styleMenu button.active {
+    color: #00ffcc;
+    font-weight: bold;
+  }
+  
+  #styleMenu button:hover {
+    color: #ffcc00;
+  }
+  
+  #editText {
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    height: 60px;
+    resize: none;
+  }
+  
+  
+  

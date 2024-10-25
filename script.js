@@ -1,75 +1,95 @@
-// Lista de personas con antecedentes predefinidos
-const people = {
-    "Juan Pérez": "tiene antecedentes de hurto y delitos menores en 2020.",
-    "María Gómez": "estuvo involucrada en fraudes fiscales entre 2018 y 2021.",
-    "Carlos Rodríguez": "fue acusado de tráfico de drogas en 2019.",
-    "Ana Martínez": "fue condenada por lavado de dinero en 2022."
-};
-
-// Variables para almacenar el valor actual de la sugerencia
-let currentSuggestion = "";
-let isNameDetected = false; // Para marcar si un nombre ha sido detectado
-
-// Actualizar la vista previa en tiempo real
-document.getElementById("documentText").addEventListener("input", function() {
-    const inputText = this.value;
-    document.getElementById("documentPreview").innerText = inputText;
-
-    // Llamar a la función que detecta nombres y sugiere antecedentes
-    detectNameAndSuggest(inputText);
-});
-
-// Función para detectar si hay un nombre en el texto y sugerir los antecedentes
-function detectNameAndSuggest(text) {
-    let lastWord = text.split(" ").slice(-2).join(" "); // Últimas dos palabras
-    let suggestions = [];
-
-    // Buscar si el nombre completo coincide con las últimas palabras escritas
-    for (const [name, record] of Object.entries(people)) {
-        if (name.toLowerCase() === lastWord.trim().toLowerCase()) {
-            currentSuggestion = record;
-            suggestions.push(record);
-            isNameDetected = true;
-            break;
-        } else {
-            isNameDetected = false;
-        }
-    }
-
-    // Mostrar sugerencias si se detecta un nombre
-    if (suggestions.length > 0) {
-        document.getElementById("suggestionsList").innerHTML = suggestions.map(s => `<li>${s}</li>`).join("");
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const searchText = params.get("text");
+    const styledTextElement = document.getElementById("styledText");
+  
+    // Colocar el texto pasado desde index.html en el contenteditable
+    if (searchText) {
+      styledTextElement.textContent = searchText;
     } else {
-        currentSuggestion = "";
-        document.getElementById("suggestionsList").innerHTML = "";
+      styledTextElement.textContent = ""; // Dejarlo vacío si no hay texto, pero siempre editable
     }
-}
-
-// Detectar cuando se presiona la tecla Tab para autocompletar con los antecedentes
-document.getElementById("documentText").addEventListener("keydown", function(e) {
-    if (e.key === "Tab" && currentSuggestion && isNameDetected) {
-        e.preventDefault(); // Prevenir el comportamiento estándar de Tab
-        this.value += " " + currentSuggestion; // Autocompletar con los antecedentes
-        document.getElementById("documentPreview").innerText = this.value; // Actualizar la vista previa
-        document.getElementById("suggestionsList").innerHTML = ""; // Limpiar sugerencias
-        currentSuggestion = ""; // Limpiar la sugerencia actual
-        isNameDetected = false; // Restablecer el estado de detección de nombre
+  
+    let currentRange;
+  
+    // Mostrar el menú cuando haya texto seleccionado
+    styledTextElement.addEventListener("mouseup", showMenu);
+    styledTextElement.addEventListener("keyup", showMenu); // También para cuando se usa el teclado
+  
+    function showMenu(event) {
+      const selection = window.getSelection();
+      if (selection.toString().length > 0) {
+        const menu = document.getElementById("styleMenu");
+        menu.style.display = "block";
+        menu.style.top = event.pageY + "px";
+        menu.style.left = event.pageX + "px";
+  
+        // Mantener el rango de selección
+        currentRange = selection.getRangeAt(0);
+  
+        // Verificar si el texto está en cursiva y cambiar el botón de cursiva
+        const isItalic = document.queryCommandState("italic");
+        const italicButton = document.querySelector("#italicButton");
+        if (isItalic) {
+          italicButton.classList.add("active");
+        } else {
+          italicButton.classList.remove("active");
+        }
+      } else {
+        hideMenu();
+      }
     }
-});
-
-// Borrar el contenido del documento
-document.getElementById("clearButton").addEventListener("click", function() {
-    document.getElementById("documentText").value = "";
-    document.getElementById("documentPreview").innerText = "";
-    document.getElementById("suggestionsList").innerHTML = "";
-});
-
-// Descargar el documento como archivo de texto
-document.getElementById("downloadButton").addEventListener("click", function() {
-    let text = document.getElementById("documentText").value;
-    let blob = new Blob([text], { type: "text/plain" });
-    let link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "documento.txt";
-    link.click();
-});
+  
+    function hideMenu() {
+      const selection = window.getSelection();
+      if (selection.toString().length === 0) {
+        document.getElementById("styleMenu").style.display = "none";
+      }
+    }
+  
+    window.applyStyle = function(style) {
+      // Aplicar o quitar estilos usando document.execCommand
+      document.execCommand(style);
+      updateButtonState(style);
+    };
+  
+    function updateButtonState(style) {
+      // Cambiar el estado del botón basado en si el estilo está aplicado o no
+      const commandState = document.queryCommandState(style);
+      const button = document.getElementById(`${style}Button`);
+      if (commandState) {
+        button.classList.add("active");
+      } else {
+        button.classList.remove("active");
+      }
+    }
+  
+    // Reemplazar texto con el contenido del área de texto sin perder la selección
+    window.replaceText = function() {
+      const textarea = document.getElementById("editText");
+      const newText = textarea.value;
+  
+      if (!currentRange) return;
+  
+      currentRange.deleteContents(); // Borra el contenido seleccionado
+  
+      // Insertar el nuevo texto
+      const textNode = document.createTextNode(newText);
+      currentRange.insertNode(textNode);
+  
+      // Mantener la selección activa
+      const selection = window.getSelection();
+      selection.removeAllRanges(); // Elimina cualquier selección previa
+      selection.addRange(currentRange); // Restaura el rango anterior
+  
+      textarea.value = ""; // Limpiar el área de texto después del reemplazo
+    };
+  
+    // Ocultar el menú si no hay texto seleccionado
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest("#styleMenu") && !e.target.closest("#styledText")) {
+        hideMenu();
+      }
+    });
+  });
+  
